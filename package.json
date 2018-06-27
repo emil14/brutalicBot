@@ -1,0 +1,22 @@
+{
+  "name": "brutalicbot",
+  "version": "0.0.1",
+  "description": "telegram-bot example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emil14/brutalicBot.git"
+  },
+  "author": "Emil14 <emil.musician@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emil14/brutalicBot/issues"
+  },
+  "homepage": "https://github.com/emil14/brutalicBot#readme",
+  "dependencies": {
+    "telegraf": "^3.21.2"
+  }
+}
