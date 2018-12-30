@@ -1,14 +1,18 @@
+import os
 from telegram.ext import Updater, CommandHandler
 
+API_TOKEN = os.environ.get('BRUTALIC_TOKEN')
 
-def hello(bot, update):
+updater = Updater(API_TOKEN)
+
+
+def say_hello(bot, update):
+    print(update)
     update.message.reply_text(
         'Hello {}'.format(update.message.from_user.first_name))
 
 
-updater = Updater('600892771:AAFt3y1TUTNTQa6AHx9VhEhvWXgZuwRop6U')
-
-updater.dispatcher.add_handler(CommandHandler('hello', hello))
+updater.dispatcher.add_handler(CommandHandler('hello', say_hello))
 
 updater.start_polling()
 updater.idle()
