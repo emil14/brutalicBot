@@ -1,18 +1,23 @@
 import os
+import logging
 from telegram.ext import Updater, CommandHandler
 
 API_TOKEN = os.environ.get('BRUTALIC_TOKEN')
 
 updater = Updater(API_TOKEN)
+dispatcher = updater.dispatcher
+
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO)
 
 
-def say_hello(bot, update):
-    print(update)
-    update.message.reply_text(
-        'Hello {}'.format(update.message.from_user.first_name))
+def start(bot, update):
+    bot.send_message(
+        chat_id=update.message.chat_id, text="I'm a bot, please talk to me!")
 
 
-updater.dispatcher.add_handler(CommandHandler('hello', say_hello))
+start_handler = CommandHandler('start', start)
+dispatcher.add_handler(start_handler)
 
 updater.start_polling()
-updater.idle()
