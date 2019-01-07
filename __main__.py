@@ -1,8 +1,11 @@
 import os
 import logging
+from dotenv import load_dotenv
 from telegram.ext import Updater, CommandHandler
 
-API_TOKEN = os.environ.get('BRUTALIC_TOKEN')
+load_dotenv()
+
+API_TOKEN = os.getenv('BRUTALIC_TOKEN')
 
 updater = Updater(API_TOKEN)
 dispatcher = updater.dispatcher
