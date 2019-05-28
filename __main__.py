@@ -17,8 +17,15 @@ def main():
             print(await req.json())
             return web.Response(status=200)
 
+        async def index(req):
+            await req.json()
+            return web.Response(status=200, text='test text')
+
         app = web.Application()
-        app.add_routes([web.post(f'/{base_url}/api/v1', handle_req)])
+        app.add_routes([
+            web.post(f'/', index),
+            web.post(f'/{base_url}/api/v1', handle_req)
+        ])
         web.run_app(app)
 
     base_url = f'https://api.telegram.org/bot{os.environ["BOT_TOKEN"]}'
