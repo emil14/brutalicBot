@@ -7,10 +7,11 @@ from aiohttp import web
 
 def main():
     async def client(base_url):
-        async with aiohttp.ClientSession() as session:
+        async with aiohttp.ClientSession() as client:
             whconf = {'url': '...'}
-            await session.post(f'{base_url}/setWebhook', json=whconf)
-            return session
+            async with client.post(f'{base_url}/setWebhook', json=whconf) as r:
+                print(await r.json())
+            return client
 
     def server(base_url):
         async def handle_req(req):
@@ -18,7 +19,7 @@ def main():
             return web.Response(status=200)
 
         async def index(req):
-            await req.json()
+            print(await req.json())
             return web.Response(status=200, text='test text')
 
         app = web.Application()
